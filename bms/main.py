@@ -2,13 +2,14 @@ import datetime
 import os
 import sys
 import time
+import csv
 
 
 def welcome():
-    print("--------------------------------------------------")
+    print("-" * 80)
     print("\t\tBank Management System")
     print("\t\tCreate by Mubin")
-    print("--------------------------------------------------")
+    print("-" * 80)
 
 
 def screen_clear():
@@ -76,13 +77,12 @@ def admin():
         print("\t 3. Delete Account")
         print("\t 4. View Accounts")
         print("\t 5. exit")
-        print("-------------------------------------------------------------------")
+        print("-" * 80)
         ch = input("Select An Option (1-5): ")
-        print("-------------------------------------------------------------------")
+        print("-" * 80)
 
         if ch == '1':
-            welcome()
-            break
+            open_account(username)
         elif ch == '2':
             print("Edit account")
             break
@@ -110,11 +110,44 @@ def title(username):
     today = datetime.datetime.now()
     dt = today.strftime("%a, %b %d, %Y")
     tm = today.strftime("%I:%M:%S %p")
-    print("-------------------------------------------------------------------")
+    print("-" * 80)
     print("\t\t\t Bank Management System ")
-    print("-------------------------------------------------------------------")
+    print("-" * 80)
     print(f"Current User: {username} | Date: {dt} | Time: {tm}")
-    print("-------------------------------------------------------------------")
+    print("-" * 80)
+
+
+def open_account(username):
+    screen_clear()
+    title(username)
+
+    field = ['Account No', 'Name', 'Date of Birth', 'Address', 'Contact No', 'Gender', 'Opening Date',
+             'Opening Balance']
+    # rows = []
+    open_bln = 0.0
+    filename = "db.csv"
+    try:
+        with open(filename, 'a') as file:
+            # creating a csv writer object
+            csvwriter = csv.writer(file)
+            csvwriter.writerow(field)
+            while True:
+                acc_no = int(input("Account No: "))
+                name = input("Full Name: ").capitalize()
+                dob = input("Date of Birth [dd/mm/yyyy]: ")
+                address = input("Address: ").capitalize()
+                cnt_no = int(input("Contact No: "))
+                gender = input("Gender[m/f]: ").capitalize()
+                open_date = datetime.date
+                open_bln = float(input("Opening Balance: "))
+                # writing the data in rows
+                csvwriter.writerow([acc_no, name, dob, address, cnt_no, gender, open_date, open_bln])
+                info_verify = input("Above all info correct? [y/n]: ")
+                if info_verify.lower() == "y":
+                    print('Account Create Successful')
+                    break
+    except FileNotFoundError as err:
+        print(err)
 
 
 if __name__ == '__main__':
