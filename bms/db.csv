@@ -2,3 +2,5 @@ Account No,Name,Date of Birth,Address,Contact No,Gender,Opening Date,Opening Bal
 1,nigga,24/01/1999,Highschool students,8923879372,Male,<class 'datetime.date'>,100.0
 Account No,Name,Date of Birth,Address,Contact No,Gender,Opening Date,Opening Balance
 2,Shinra,10/2/1898,Helalsjl,3972987932,Male,<class 'datetime.date'>,19389.0
+Account No,Name,Date of Birth,Address,Contact No,Gender,Opening Date,Opening Balance
+3,Lulu,30/12/1998,Iceland,347493793,Male,<class 'datetime.date'>,12345.98

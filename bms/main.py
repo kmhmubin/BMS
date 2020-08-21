@@ -145,6 +145,7 @@ def open_account(username):
                 info_verify = input("Above all info correct? [y/n]: ")
                 if info_verify.lower() == "y":
                     print('Account Create Successful')
+                    time.sleep(1)
                     break
     except FileNotFoundError as err:
         print(err)
